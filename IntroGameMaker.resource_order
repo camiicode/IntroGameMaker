@@ -1,0 +1,11 @@
+{
+  "FolderOrderSettings":[
+    {"name":"Objects","order":3,"path":"folders/Objects.yy",},
+    {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
+    {"name":"reactions","order":1,"path":"folders/Sprites/reactions.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"obj_reaction__love","order":1,"path":"objects/obj_reaction__love/obj_reaction__love.yy",},
+    {"name":"spr_cell__evolved","order":1,"path":"sprites/spr_cell__evolved/spr_cell__evolved.yy",},
+  ],
+}
