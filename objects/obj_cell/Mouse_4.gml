@@ -19,31 +19,32 @@ if (click_count == 10 && sprite_index != spr_cell__evolved) {
 
 // Multiplicación celular (Versión CORREGIDA)
 if (click_count == 25) {
-    click_count = 0; // Reinicia el contador para futuras evoluciones
+    click_count = 0; // Reinicia el contador
     
-    var clones_creados = 0; // Contador de clones generados
-    var radio = 64; // Distancia desde la célula original
-    var angulo = 0; // Ángulo inicial para posicionar clones
+    var clones_creados = 0;
+    var radio = sprite_width + 10; // Distancia mínima entre células (ajústala)
+    var angulo = 0;
+    var intentos_maximos = 20; // Evita loops infinitos
+    var intentos = 0;
     
-    // Intentamos crear 3 clones en posiciones circulares alrededor
-    while (clones_creados < 3) {
-        // Calculamos posición en un círculo alrededor de la célula
+    while (clones_creados < 3 && intentos < intentos_maximos) {
         var new_x = x + lengthdir_x(radio, angulo);
         var new_y = y + lengthdir_y(radio, angulo);
         
-        // Verificamos que no haya colisión con otras células
-        if (!place_meeting(new_x, new_y, obj_cell)) {
+        // Chequea colisión con cualquier célula (evolucionada o no)
+        if (!instance_position(new_x, new_y, obj_cell)) {
             var new_cell = instance_create_layer(new_x, new_y, "Instances", obj_cell);
             
-            // Aseguramos que sea una célula no evolucionada
+            // Resetear propiedades
             new_cell.sprite_index = spr_cell;
             new_cell.image_xscale = 1;
             new_cell.image_yscale = 1;
-            new_cell.click_count = 0; // Resetear contador
+            new_cell.click_count = 0;
             
-            clones_creados++; // Incrementamos solo en 1
+            clones_creados++;
         }
         
-        angulo += 120; // Repartimos 3 clones en 360° (120° cada uno)
+        angulo += random_range(90, 150); // Ángulo aleatorio para distribución orgánica
+        intentos++;
     }
 }
